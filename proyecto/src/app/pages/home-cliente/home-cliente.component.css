@@ -1,0 +1,43 @@
+.colorFooter {
+    background-image: radial-gradient(circle at 12.5% 12.5%, #EAFFFF 0, #94ADE1 50%, #414142 100%);
+}
+
+.logo {
+    height: 60px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.imgCarrusel {
+    width: 100%;
+    height: 500px;
+}
+
+h3 {
+    color: black;
+    font-size: 50px;
+    font-weight: 500;
+    /* background-color: yellow; */
+}
+
+p {
+    color: black;
+    font-size: 35px;
+    font-weight: 350;
+}
+
+.separacion {
+    /* margin: 15px; */
+    margin-top: 25px;
+}
+
+.box{
+    position: absolute;
+    top: 14%;
+    left: 90%;
+}
+
+.fuente{
+    color:honeydew;
+}
+

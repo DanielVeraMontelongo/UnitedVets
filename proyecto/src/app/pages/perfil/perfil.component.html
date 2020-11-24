@@ -1,0 +1,315 @@
+<body>
+    <div class="container main-secction">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+                <img src="../../../assets/imagenes/vacunas2.jpg">
+            </div>
+            <div class="row user-left-part">
+                <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
+                    <div class="row ">
+                        <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+                            <img src={{perfil.foto}} class="rounded-circle">
+                            <div id="boxEditar">
+                                <mdb-icon *ngIf="perfilLog==true" type="button" (click)="open(content,perfil)"
+                                    id="botonEditar" data-toggle="modal" ngbTooltip="Editar perfil"
+                                    data-target="#contenedorModal" fas icon="user-edit fa-1x black-text"></mdb-icon>
+                                <label *ngIf="perfilLog==true" class="image-upload-container btn-bwm "
+                                    id="editarPerfil">
+                                    <mdb-icon far icon="image fa-1x black-text" ngbTooltip="Editar foto"></mdb-icon>
+
+                                    <input class="foto" #imageInput type="file" accept="image/*"
+                                        (change)="processFile(imageInput)">
+                                </label>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+                <ng-template #content let-modal>
+                    <div id="contenedorModal">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title">Editar perfil</h4>
+                            <button type="button" class="close" aria-label="Close"
+                                (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form [formGroup]="registerForm" (ngSubmit)="guardar()">
+
+                                <div class="form-group">
+                                    <div class="input-group">
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Email </label>
+                                            <input type="email" id="email" aria-describedby="emailHelp" required
+                                                [(ngModel)]="email" [ngModelOptions]="{standalone: true}"
+                                                placeholder="Enter email">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label>Telefono</label>
+                                            <input type="text" [(ngModel)]="telefono" required
+                                                [ngModelOptions]="{standalone: true}" placeholder="Telefono"
+                                                id="telefono">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label>Dirección</label>
+                                            <input type="text" [(ngModel)]="direccion" required
+                                                [ngModelOptions]="{standalone: true}" placeholder="Dirección"
+                                                id="direccion">
+                                        </div>
+
+                                        <div *ngIf="perfil.rol == 'Veterinario'">
+                                            <div class="form-group">
+                                                <label>Numero de colegiado</label>
+                                                <input type="text" [(ngModel)]="nColegiado" required
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    placeholder="Numero de colegiado" id="nColegiado">
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="perfil.rol == 'Veterinario'">
+                                            <div class="form-group">
+                                                <label>Especialidad</label>
+                                                <input type="text" [(ngModel)]="especialidad" required
+                                                    [ngModelOptions]="{standalone: true}" placeholder="Especialidad"
+                                                    id="especialidad">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Contraseña</label>
+                                            <input type="password" [(ngModel)]="password1" required
+                                                [ngModelOptions]="{standalone: true}" id="password1"
+                                                placeholder="Contraseña" formControlName="password">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="confirmPassword">Confirmar contraseña</label>
+                                            <input name="confirmPassword" [(ngModel)]="password2" required
+                                                [ngModelOptions]="{standalone: true}" type="password" id="password2"
+                                                placeholder="Contraseña2" formControlName="repassword">
+                                        </div>
+
+                                        <div *ngIf="repassword.value != password.value" class="text-danger">
+                                            Las contraseñas deben coincidir!
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- <div class="alerta">
+                          <ngb-alert class="col-md-5" *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+                
+                        </div> -->
+                        <div class="modal-footer">
+                            <!-- <div *ngIf="password2 == password1" *ngDisabled="false"></div> -->
+
+                            <button type="submit" class="btn btn-outline-primary"
+                                [disabled]="repassword.value != password.value" id="guardar"
+                                (click)="actualizarUsuario()" (click)="modal.dismiss('Cross click')">Guardar</button>
+                            <button type="button" class="btn btn-outline-primary" id="cancelar"
+                                (click)="modal.close('Save click')">Cancelar</button>
+                        </div>
+                    </div>
+                </ng-template>
+
+
+                <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
+                    <div class="row profile-right-section-row">
+                        <div class="col-md-12 profile-header">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                                    <h1>{{perfil.nombre_usuario}}</h1>
+                                    <!-- <h5> United Vets</h5> -->
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
+                                    <h5></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 nuevaClase">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade show active" id="profile">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Nombre:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="row  largo">
+                                                    <p>{{perfil.nombre}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Apellido:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="row  largo">
+                                                    <p>{{perfil.apellido1}} {{perfil.apellido2}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Fecha de Nacimiento:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="row  largo">
+                                                    <p>{{perfil.fechaNacimiento}}</p>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>NIE:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="row  largo">
+                                                    <p>{{perfil.dni}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Email:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="row  largo">
+                                                    <p>{{perfil.email}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Teléfono:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="row  largo">
+                                                    <p>{{perfil.telefono}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Direccion: </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="row  largo">
+                                                    <p>{{perfil.direccion}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="perfil.rol == 'Veterinario'">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Numero de Colegiado:</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-8">
+                                                    <div class="row  largo">
+                                                        <p>{{perfil.nColegiado}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="perfil.rol == 'Veterinario'">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label>Especialidad:</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="row  largo">
+                                                        <p>{{perfil.especialidad}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="perfil.rol == 'Cliente'">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label>Mascotas:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="row  largo" *ngFor="let mascota of mascotas;">
+                                                        <p>{{mascota.nombre}} <button type="button" class="btn btn-link"
+                                                                (click)="verPerfil(mascota)">Ver perfil</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="btnCerrar" class="col-md-4 img-main-rightPart">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row image-right-part">
+                                                <div class="col-md-6 pull-left image-right-detail">
+                                                    <h5></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <a href=""  ngIf =""> -->
+                                        <div class="col-md-12 image-right">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src={{perfilMascota.foto}}
+                                                    alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{perfilMascota.nombre}}</h5>
+                                                    <label *ngIf="perfilLog==true"
+                                                        class="image-upload-container btn-bwm " id="editarPerfilM">
+                                                        <mdb-icon far icon="image fa-1x black-text"
+                                                            ngbTooltip="Editar foto"></mdb-icon>
+
+                                                        <input class="foto" #imageInputM type="file" accept="image/*"
+                                                            (change)="processFileM(imageInputM)">
+                                                    </label>
+                                                    <p>Fecha Nacimiento: {{perfilMascota.fechaNacimiento}}</p>
+                                                    <p>Alergias: {{perfilMascota.alergias}}</p>
+                                                    <p>Especie: {{perfilMascota.especie}}</p>
+                                                    <p>Raza: {{perfilMascota.raza}}</p>
+                                                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                                                    <button id="botonCerrar" (click)="cerrar()"><i id="colorCerrar"
+                                                            class="fas fa-times fa-lg" ngbTooltip="Cerrar"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- </a> -->
+                                        <div class="col-md-12 image-right-detail-section2">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

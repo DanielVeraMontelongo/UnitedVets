@@ -1,0 +1,65 @@
+img{
+    height: 60px;
+    width: 60px;
+}
+
+#titulo{
+    margin-top: 25px
+}
+
+#margenRol{
+    margin-top: 5%;
+}
+
+button{
+    margin-left:30%;
+    margin-top: 5%;
+}
+
+li{
+    list-style: none;
+}
+
+ul{
+    float: left;
+}
+
+#top{
+    margin-top: 3%;
+}
+
+#contenedorModal{
+   padding: 5%;
+  
+}
+
+.card{
+    font-family: 'Nunito', sans-serif, Black 900 italic;
+}
+
+.alinearBoton{
+    display: flex;
+    margin-left: 20px;
+}
+
+
+
+#iconoPerfil{
+    color:#5cb85c;
+    
+}
+
+.margen
+{
+    margin-left: 10px;
+}
+
+
+p {
+    color: black;
+    font-size: 35px;
+    font-weight: 350;
+}
+/* .main-secction {
+    box-shadow: 10px 10px 10px;
+} */

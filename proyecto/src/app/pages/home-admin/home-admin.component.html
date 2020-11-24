@@ -1,0 +1,132 @@
+<div class="row " id="top">
+    <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 "></div>
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 ">
+      <form class="form-inline ">
+        <input class="form-control mr-sm-2 " type="search" #nombreUsuario placeholder="Buscar usuario" aria-label="Buscar">
+        <button (click)="buscarUsuario(nombreUsuario.value)" class="botonBuscar btn  btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
+      </form>
+    </div>
+    <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 "></div>
+  </div>
+  
+  <div class="row " id="titulo">
+
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 ">
+    </div>
+    <p> Usuarios</p>
+  </div>
+  <div class="row " id="top">
+    <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 "></div>
+    <div>
+      <ul *ngFor= "let usuario of usuarios | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;">
+        <li>
+          <div class="card" style="width: 17rem;">
+            <div class="card-body row">
+              <div class="row">
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 ">
+                  <img *ngIf="usuario.foto==''" src="../../../assets/imagenes/Usuario-Vacio.png" alt="Card image cap">
+                  <img *ngIf="usuario.foto!=''" src={{usuario.foto}} alt="Card image cap">
+                </div>
+                  <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 "></div>
+                  <h5 class="card-title">Nombre: {{ usuario.nombre }}</h5>
+                <div class="row">
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 "></div>
+                    <h6 class="card-subtitle" id="margenApellidos">Apellidos: {{usuario.apellido1 }} {{usuario.apellido2 }}  </h6> 
+                </div>
+                <div class="row">
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 ">
+                    <p class="card-text" id="margenRol"> <br>  Rol: {{usuario.rol }}</p>
+                  </div>
+                  
+                  <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 alinearBoton">
+                    <button  type="button" class="btn btn-sm " (click)="confirmar(usuario)"><i class="material-icons " ngbTooltip="Borrar" id="btnDelete">delete</i></button>  
+                    <button  type="button" (click)="open(content,usuario)" class="btn btn-sm btnModificar"><i class="material-icons" ngbTooltip="Modificar" id="BotonModificar">edit</i></button>
+                    <button type="button" class="btn btn-sm " (click)="enviarMascota()"> <i class="fas fa-dog"  ngbTooltip="Registrar"></i></button>
+                  </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </li>
+  
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+      (pageChange)="refreshPaginas()">
+    </ngb-pagination>
+  </div>
+  
+  <ng-template #content let-modal>
+    <div id="contenedorModal">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Editar Datos</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+  
+          <form >
+  
+            <div class="form-group">
+              <div class="input-group">
+            
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email </label>
+                  <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="email"  id="email" [ngModelOptions]="{standalone: true}" />
+                </div>
+              
+     
+               <div class="form-group">
+                <label >Nombre</label>
+                <input type="text"  placeholder="Nombre" [(ngModel)]="nombre" id="nombre" [ngModelOptions]="{standalone: true}" />
+              </div>
+              
+                <div class="form-group">
+                  <label >Primer Apellido</label>
+                  <input type="text"  placeholder="Primer Apellido" [(ngModel)]="apellido1" id="apellido1" [ngModelOptions]="{standalone: true}" />
+                </div>
+
+                <div class="form-group">
+                  <label >Segundo Apellido</label>
+                  <input type="text"  placeholder="Segundo Apellido" [(ngModel)]="apellido2" id="apellido2" [ngModelOptions]="{standalone: true}" />
+                </div>
+                
+             
+                <div class="form-group">
+                  <label >D.N.I.</label>
+                  <input type="text"  placeholder="DNI" [(ngModel)]="dni" id="dni"  [ngModelOptions]="{standalone: true}"/>
+                </div>
+              
+                <div class="form-group">
+                  <label>Fecha de nacimiento</label>
+                  <input type="date" id="fecha" [(ngModel)]="fecha" required="" [ngModelOptions]="{standalone: true}" />
+                 
+                </div>
+
+                <div class="form-group">
+                  <label >Dirección</label>
+                  <input type="text"  placeholder="Dirección" [(ngModel)]="direccion" id="direccion" [ngModelOptions]="{standalone: true}" />
+                </div>               
+
+                <div class="form-group">
+                  <label>Telefono</label>
+                  <input type="text"  placeholder="Telefono" [(ngModel)]="telefono" id="telefono" [ngModelOptions]="{standalone: true}" />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="alerta">
+          <ngb-alert class="col-md-5" *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+
+        </div>
+        <div class="modal-footer">
+
+          <button type="button" id="boton" class="btn btn-outline-primary" (click)="guardar()" (click)="modal.close('Save click')">Guardar</button>
+          <button type="button" id="boton" class="btn btn-outline-primary" (click)="modal.close('Save click')">Cancelar</button>
+        </div>
+    </div>
+  </ng-template>

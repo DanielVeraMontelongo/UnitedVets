@@ -1,0 +1,36 @@
+#top{
+    margin-top: 5%;
+}
+
+#titulo{
+    margin-top: 25px
+}
+#filtrarCLiente
+{
+    margin-left: 5%;
+}
+
+#margenBoton
+{
+    margin-left: 10px;
+}
+
+#margenBotonNuevoHistorial
+{
+    margin-left: 10px;
+    margin-top: -60px !important;
+}
+
+
+
+#nuevaHistoria
+{
+    
+    margin-left: 10px;
+}
+
+p {
+    color: black;
+    font-size: 35px;
+    font-weight: 350;
+}

@@ -1,0 +1,128 @@
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.5/chosen.jquery.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.5/chosen.min.css">
+
+
+
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+<div class="my-container ">
+
+<div class="card">
+  
+    <!-- <div class="row"> -->
+      <img id="logo" src="../../../assets/imagenes/image.png" width="83" height="54" class="d-inline-block align-top" alt="">
+    <h2 id="register-pet">Registrar Mascota</h2>
+ 
+
+       
+      <!-- <div class="input-container">
+       
+      
+      <p id="seleccionable">Seleccionar dueño:</p>
+     
+        <select class="chosen" id="seleccionarUsuario">
+            <option value="">Dani</option>
+            <option value="">Tania</option>
+            <option value="">Paul</option>
+            <option value="">Laura</option>
+        </select> 
+        <script type="text/javascript">
+          $("chosen").chosen();
+      </script>
+
+    </div> -->
+    
+
+    <div class="ng-autocomplete " >
+      
+      <ng-autocomplete 
+        [data]="usuarios"
+        [searchKeyword]="keyword"
+        (selected)='selectEvent($event)'
+        (inputChanged)='onChangeSearch($event)'
+        [itemTemplate]="itemTemplate"
+        [notFoundTemplate]="notFoundTemplate"
+        placeHolder = "Seleccione nombre de usuario">  
+          
+                                     
+      </ng-autocomplete>
+            
+      <ng-template #itemTemplate let-item >
+        <a   [innerHTML]="item.nombre_usuario"> </a>
+        
+      </ng-template>
+
+       
+      <ng-template #notFoundTemplate let-notFound>
+      <div [innerHTML]="notFound"></div>
+      </ng-template>
+    </div>
+
+
+
+
+    
+   
+    
+  <!-- </div> -->
+      <div class="input-container">	
+        <!-- <div class="row">	 -->
+        <input type="text" #nombre id="nombre"/>
+        <label>Nombre</label>
+      </div>
+      <!-- </div> -->
+      <div class="input-container">	
+        <!-- <div class="row">	 -->
+        <input type="text" #chip id="chip"/>
+        <label>Numero CHIP</label>
+      </div>
+    <!-- </div> -->
+      <div class="input-container">
+        <!-- <div class="row"> -->
+        <input type="text" #especie id="especie" />
+        <label>Especie</label>		
+      <!-- </div> -->
+    </div>
+    <div class="input-container">
+      <!-- <div class="row"> -->
+      <input type="text" #raza id="raza"/>
+      <label>Raza</label>		
+    <!-- </div> -->
+  </div>
+  <div class="input-container">	
+    <!-- <div class="row">	 -->
+    <input type="date" #fechaNacimiento id="fechaNacimiento"/>
+    <label id="date">Fecha de nacimiento</label>
+  </div>
+    <div class="input-container">	
+      <!-- <div class="row">	 -->
+      <input type="text" #alergias id="alergias"/>
+      <label>Alergias</label>
+    </div>
+  <!-- </div> -->
+    <!-- <div class="input-container">		
+        <input type="password" required="" id="password2" value=""/>
+        <label>Confirmar contraseña</label>
+      </div> -->
+    <div class="row">  
+      
+      <!-- <input type="reset" (click)="crearMascota(nombre,chip,especie,raza,fechaNacimiento,alergias)"> -->
+      <div  class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 "> <button (click)="crearMascota(nombre,chip,especie,raza,fechaNacimiento,alergias)" class="boton" id="boton" type="button"><b>Registrar</b></button> </div>
+      <!-- <div  class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 "> <input type="reset" (click)="crearMascota(nombre,chip,especie,raza,fechaNacimiento,alergias)" id="boton" value="Registrar"></div>  -->
+</div>
+
+
+<!-- <div *ngIf="crearMascota(nombre,chip,especie,raza,fechaNacimiento,alergias)==true">
+  <input type="text" required="" #alergias id="alergias" value="null"/>
+</div> -->
+
+</div>
+</div>
+
+
+

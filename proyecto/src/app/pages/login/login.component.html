@@ -1,0 +1,63 @@
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+<div class="my-container">
+    <h1 id="login1">United Vets </h1>
+    <div class="card">
+
+        <img src="../../../assets/imagenes/image.png" width="93" height="54" class="d-inline-block align-top" alt="">
+        <h1 id="login">Login </h1>
+        <!-- <div class="row1"> 
+        <div class="fila1 col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 "><b>Usuario:   </b><input [(ngModel)]="usuario" class="texto" style="width: 15rem;" type="text" id="usuario"/> </div>
+        <div class="fila2 col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 "><b>Contraseña:  </b> <input [(ngModel)]="password" style="width: 15rem;" class="texto" type="password" id="password"/> </div>
+    </div> -->
+        <div class="input-container">
+            <input type="text" required="" [(ngModel)]="usuario" id="usuario" />
+            <label>Usuario</label>
+        </div>
+        <div class="input-container">
+            <input type="password" required="" [(ngModel)]="password" id="password" />
+            <label>Contraseña</label>
+        </div>
+        <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+
+        <div class="row2">
+            <div class="fila3 col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 "> <button class="boton" (click)="enviar()"><b>Iniciar</b> </button></div>
+        </div>
+    </div>
+</div>
+
+<div class="contenedor1">
+
+    <div class="card-body contenedor2">
+        <h5 class="card-text">Ventajas de la aplicacion </h5>
+        <ul>
+            <li>Citas Medicas.<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-calendar3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                        <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                      </svg></li>
+
+            <li>Diagnostico de tu Mascota desde tu perfil <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-clipboard-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path fill-rule="evenodd" d="M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3zm4.354 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                      </svg></li>
+
+            <li>Chat con un Veterinario Certificado <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-chat-left-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v11.586l2-2A2 2 0 0 1 4.414 11H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                      </svg></li>
+
+            <li>Urgencias las 24 horas <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10zm4.854-7.85a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                      </svg></li>
+
+
+        </ul>
+    </div>
+    <div class="contenedor3">
+        <h5>¿Como registrarte?</h5>
+        <ul>
+            <li>La autorizacion la realiza tu Clinica Veterinaria</li>
+            <li>Registro rapido y facil.</li>
+        </ul>
+    </div>
+</div>

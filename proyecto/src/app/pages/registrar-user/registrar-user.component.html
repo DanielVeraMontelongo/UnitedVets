@@ -1,0 +1,92 @@
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<div class="my-container">
+  <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+
+<div class="card">
+
+  <img src="../../../assets/imagenes/image.png" width="93" height="47" class="d-inline-block align-top" alt="">
+    <h5 id="register-user">Registrar Usuarios</h5>
+
+    <div class="input-container">		
+        <input type="text" required="" [(ngModel)]="nombre" id="nombre"/>
+        <label id="nombre">Nombre</label>
+      </div>
+      <div class="input-container">		
+        <input type="text" required="" [(ngModel)]="apellido1" id="apellido1"/>
+        <label id="apellido1">Primer apellido</label>
+      </div>
+      <div class="input-container">		
+        <input type="text" required="" [(ngModel)]="apellido2" id="apellido2"/>
+        <label id="apellido2">Segundo apellido</label>
+      </div>
+      <div class="input-container">
+        <input type="date" id="fecha" [(ngModel)]="fecha" required="" >
+        <label id="fecha">Fecha de nacimiento</label>
+      </div>
+      <div class="input-container">
+        <input type="email" [(ngModel)]="email"  id="email" required="" >
+        <label id="email">Email</label>
+      </div>
+      <div class="input-container">
+        <input type="text" [(ngModel)]="telefono" id="telefono" required="" >
+        <label id="telefono">Numero de teléfono</label>
+      </div>
+      <div *ngIf="tipoDeUsuario=='Veterinario'" class="input-container">         
+        <input type="text" [(ngModel)]="nColegiado" required id="nColegiado">
+        <label id="nColegiado" >Numero de colegiado</label>
+      </div>
+      <div *ngIf="tipoDeUsuario!='Veterinario' " class="input-container">         
+
+      </div>
+
+      <div class="input-container" id="input-container2">
+        <input type="text" [(ngModel)]="direccion" id="direccion" required="" >
+        <label id="direccion">Dirección</label>
+      </div>
+      <div class="input-container" id="input-container2">		
+        <input type="text" required="" [(ngModel)]="dni" id="dni"/>
+        <label id="dni">DNI</label>
+      </div>
+      <div class="input-container" id="input-container2">		
+   
+        <p id="seleccionable">Tipo de usuario:</p> 
+        <select id="tipoDeUsuario" name="tipoDeUsuario" [(ngModel)]="tipoDeUsuario">
+         <option value="">Seleccionar opcion </option>
+         <option *ngFor="let opcion of opciones" [value]="opcion" >
+             {{opcion}}
+         </option>
+        </select>
+
+      </div>
+
+      
+
+    <div class="input-container" id="input-container2">
+      <input type="text" required=""  id="usuario" [(ngModel)]="usuario"/>
+      <label id="nUsuario">Nombre de usuario</label>		
+    </div>
+    <div class="input-container" id="input-container2">		
+      <input type="password" required="" id="password1" [(ngModel)]="password1" value=""/>
+      <label id="password1">Contraseña</label>
+    </div>
+    <div class="input-container" id="input-container2">		
+        <input type="password" required="" id="password2" [(ngModel)]="password2" value="" />
+        <label id="confirmar_pass">Confirmar contraseña</label>
+    </div>
+
+  
+      <div *ngIf="tipoDeUsuario=='Veterinario'"  class="input-container" id="input-container2">         
+          <input type="text" [(ngModel)]="especialidad" required id="especialidad">
+          <label id="especialidad">Especialidad</label>
+      </div>
+      <div *ngIf="tipoDeUsuario=='Cliente'"  class="input-container" id="input-container2">         
+    </div>
+
+    <div class="row2"> 
+
+      <!-- <div  class="fila3 col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 "> <button><input type="reset"  class="boton" id="boton" value="Registrar" (click)="registrar()"> </button></div> -->
+
+      <div  class="fila3 col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 "> <button type="button" class="boton" id="boton" value="boton" (click)="registrar()"><b>Registrar</b> </button></div> 
+   </div>
+</div>
+</div>

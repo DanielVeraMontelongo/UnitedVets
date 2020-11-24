@@ -1,0 +1,101 @@
+
+
+<div class="container main-secction">
+    <div class="row " id="top">
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 "></div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 ">
+        <form class="form-inline ">
+          <input class="form-control mr-sm-2 " type="search" placeholder="Buscar cliente" #nombre aria-label="Buscar">
+          <button (click)="buscarCliente(nombre.value)" class="btn  btn-outline-primary my-2 my-sm-0" >Buscar</button>
+        </form>
+      </div>
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 "></div>
+    </div>
+    <div class="row " id="titulo">
+
+      <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 ">
+      </div>
+      <p> Clientes</p>
+    </div>
+
+    <div class="row " id="top">
+      <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 "></div>
+      <div>
+        <ul *ngFor= "let usuario of usuarios | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;">
+          <li>
+            <div class="card" style="width: 15rem;">
+              <div class="card-body row">
+                <img *ngIf="usuario.foto==''" src="../../../assets/imagenes/Usuario-Vacio.png" alt="Card image cap">
+                <img *ngIf="usuario.foto!=''" src={{usuario.foto}} alt="Card image cap">
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 "></div>
+                <button  type="button" class="btn btn-sm " (click)="mostrarPerfil(usuario)"><mdb-icon fas icon="id-card fa-3x indigo-text"  ngbTooltip="Ver Perfil"></mdb-icon></button>
+              </div>
+              <div class="margen">
+                <h6 class="card-title ">Nombre: {{ usuario.nombre }}</h6>
+                <h6 class="card-title ">Apellidos: {{usuario.apellido1}} {{usuario.apellido2}} </h6>
+              </div>
+            </div>
+          </li>
+        
+        </ul>
+      </div>
+      
+    </div>
+
+    <div class="row">
+      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+        (pageChange)="refreshPaginas()">
+      </ngb-pagination>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row" id="top">
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+    <div class="card" style="width: 40rem;" id="lista">
+        <div class="row">
+            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+            <form class="form-inline">
+              <input class="form-control mr-sm-2 btn-sm" type="search" placeholder="Buscar cliente" aria-label="Buscar">
+              <button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">ID cliente</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Perfil</th>
+              </tr>
+            </thead>
+            <tbody *ngFor= "let usuario of usuarioService.lista; let i = index;" [ngClass]= "i%2 === 0 ? 'filaPar' : ''">
+              <tr > 
+                <th ></th>
+                <td >  {{ usuario.id }}  </td>
+                <td >  {{ usuario.nameUser }}  </td>           
+                <td > {{usuario.rol }}  </td>                       
+                <td > <button  type="button" class="btn btn-primary btn-sm">Ver perfil</button>  </td> 
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div> -->

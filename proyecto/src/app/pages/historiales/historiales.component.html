@@ -1,0 +1,76 @@
+
+
+    <h3>Historial</h3>
+    
+    <ng-template #esFalsoM>  
+    </ng-template>
+ 
+     
+      <br>
+      <div class="contenido">
+ 
+        <form class="form-inline">
+            <div class="form-group alinear form-control ">
+              <div class="input-group">
+                <div ><b >Nombre Cliente:   </b><input [(ngModel)]="nombreP" class="texto "type="text" id="nombreP" [ngModelOptions]="{standalone: true}"  /> </div> 
+                <div >
+                  <b id="nMascota">Nombre de Mascota   </b>
+                  <input *ngIf="opciones.length ==0" [(ngModel)]="nombreM" class="texto "type="text" id="nombreM" [ngModelOptions]="{standalone: true}"  />
+                  <select *ngIf="opciones.length !=0" name="nombreM" [(ngModel)]="nombreM" (change)='eleccionMascota(nombreM)'>
+                   <option value="">Seleccionar mascota</option>
+                   <option *ngFor="let opcion of opciones" [value]="opcion" >
+                       {{opcion}}
+                   </option>
+                  </select>
+                  <!--<b  >Nombre de Mascota:   </b>
+                  <input [(ngModel)]="nombreM" class="texto" type="text" id="nombreM" [ngModelOptions]="{standalone: true}">--> 
+                </div> 
+                <div *ngIf="editBoton==true"><b id="fElaboracion">Fecha de elaboración:   </b><input [(ngModel)]="fecha"  class="texto" type="date" id="fecha" [ngModelOptions]="{standalone: true}"/> </div> 
+                <div *ngIf="editBoton!=true" >
+                <b id="fElaboracion">Fecha </b>  
+                <select *ngIf="opciones.length !=0" name="fecha" [(ngModel)]="fecha" >
+                  <option value="">Seleccionar Fecha</option>
+                  <option *ngFor="let opcionF of opcionesF" [value]="opcionF" >
+                      {{opcionF}}
+                  </option>
+                 </select>
+                </div>  
+                <button *ngIf="editBoton!=true" class="btn" (click)="buscar()" ngbTooltip="Buscar" id="botonLupa" type="button" ><i class="material-icons">
+                  search
+              </i></button>            
+              </div>
+              
+          
+            </div>
+           
+          </form>
+          <br><br>
+          <div class="row">
+            <h5>Ananmnesis</h5> 
+             <textarea rows="10" cols="40" id="ananmnesis" [(ngModel)]="ananmnesis">  </textarea>
+         </div>
+         <br><br>
+         <div class="row">
+             <h5>Tratamiento</h5> 
+             <textarea rows="10" cols="40" id="tratamiento" [(ngModel)]="tratamiento"> </textarea>
+       
+         </div>
+
+  
+
+          <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+
+
+         <div class="row alinear botones">
+            <button *ngIf="!editBoton && usuarioService.usuario.rol!='Cliente'; else esFalsoM" (click)= "modificar()" class="btn  btn-outline-primary my-2 my-sm-0" type="submit" [disabled]="editBotonF">Modificar historia</button>
+            <button *ngIf="editBoton; else esFalsoM" (click)="anadir()" class="btn  btn-outline-primary my-2 my-sm-0" type="submit" [disabled]="!editBoton">Crear nueva historia</button>
+            <ng-template #esFalsoM>  
+            </ng-template>
+        </div>
+        <br>
+      </div>
+   
+
+   
+
+  

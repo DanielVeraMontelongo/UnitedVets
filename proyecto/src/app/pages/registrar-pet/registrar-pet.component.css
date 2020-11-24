@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&subset=greek-ext');
+.my-container{
+    background-image: url('../../../assets/imagenes/fondoRPet.jpg');
+    background-position: center;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+	min-height:100vh;
+	font-family: 'Noto Sans', sans-serif;
+}
+#seleccionable
+{
+    margin-left: 34%;
+    margin-top: 1%;
+    font-family: 'Noto Serif', serif;
+    color: white;
+}
+#seleccionarUsuario
+{
+    margin-left: 43%;
+    height: 37%;
+}
+
+.select2-container .select2-selection--single{
+    height:34px !important;
+}
+.select2-container--default .select2-selection--single{
+         border: 1px solid #ccc !important; 
+     border-radius: 0px !important; 
+}
+
+
+.card
+{
+    position: absolute;
+    background-color: rgba(37, 35, 35, 0.89);
+    left: 27%;
+    top: 19%;
+    border-color: rgb(41, 41, 41);
+    border-radius: 3px;
+    padding: 0 100px;
+    padding-bottom: 5px;
+    height: 80%;  
+    width: 45%;
+}
+label{
+    /* font-family: 'Chela One', cursive; font-size: medium;
+    color: rgb(165, 190, 216); */
+    font-family: 'Noto Serif', serif;
+    color: white;
+}
+img{
+    margin-top: 2%;
+    margin-left: 34%;
+    width: 28%;
+}
+#register-pet
+{
+    margin-left: 15%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    font-family: 'Noto Serif', serif;
+    color: white;
+    /* font-family: 'Chela One', cursive; font-size: 250%; */
+    width: 100%;
+    /* background: radial-gradient(circle at 12.5% 12.5%, #EAFFFF 0, #94ADE1 50%, #414142 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+}
+b 
+{
+    font-family: 'Noto Serif', serif;
+    color: white;
+    /* font-family: 'Chela One', cursive; font-size: medium;
+    background: radial-gradient(circle at 12.5% 12.5%, #EAFFFF 0, #94ADE1 50%, #414142 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+}
+
+#date{
+    position:absolute;
+	top:0px;
+    left:0px;
+    width: 100%;
+	font-size:13px;
+	color:#fff;	
+    pointer-events:none;
+	transition: all 0.5s ease-in-out;
+}
+.input-container{
+	position:relative;
+    margin-bottom:5%;
+    width: 100%;
+    height: 80%;
+}
+.input-container #date{
+	position:absolute;
+	top:-17px;
+    left:0px;
+    width: 100%;
+	font-size:15px;
+	color:#fff;	
+    pointer-events:none;
+	transition: all 0.5s ease-in-out;
+}
+.input-container label{
+	position:absolute;
+	top:0px;
+    left:0px;
+    width: 100%;
+	font-size:15px;
+	color:#fff;	
+    pointer-events:none;
+	transition: all 0.5s ease-in-out;
+}
+.input-container input { 
+  border:0;
+  border-bottom:2px solid #555;  
+  background:transparent;
+  width:100%;
+  height: 80%;
+  padding:8px 0 5px 0;
+  font-size:15px;
+  color:#fff;
+}
+.input-container input:focus{ 
+ border:none;	
+ outline:none;
+ border-bottom:1px solid #e74c3c;	
+}
+.input-container input:focus ~ #date,
+.input-container input:valid ~ #date{
+	top:-14px;
+	font-size:15px;
+}
+
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+	top:-10px;
+	font-size:15px;
+}
+button
+{
+    border: 0;
+    background: none !important;
+    text-transform: uppercase;
+    color: #14151b;
+    font-weight: bold;
+    position: relative;
+    /* position: absolute; */
+    outline: none;
+    padding: 10px 50px;
+    box-sizing: border-box;
+    margin-top: -3%;
+    margin-left: 90%;
+}
+button::before, button::after{
+    box-sizing: inherit;
+    position: absolute;
+    content: '';
+    border: 2px solid transparent;
+    height: 0;
+    width: 0;
+}
+button::after{
+    bottom: 0;
+    right: 0;
+}
+button::before{
+    top: 0;
+    left: 0;
+}
+button:hover::before, button:hover::after{
+    width: 100%;
+    height: 100%;
+}
+button:hover::before{
+    border-top-color: #67aac5;
+    border-right-color: #67aac5;
+    transition: width 0.3s, height 0.3s ease-out 0.3s;
+}
+button:hover::after{
+    border-bottom-color: #67aac5;
+    border-left-color: #67aac5;
+    transition: border-color 0s ease-out 0.6s, width 0.3s ease-out 0.6s, heigth 0.3s ease-out 1s;
+}
+
+.ng-autocomplete{
+    background-color: yellow;
+    background: transparent;
+    border-radius: 20%;
+
+    position:relative;
+    margin-bottom:5%;
+    width: 100%;
+    height: 80%;
+}
+@media screen and (max-width: 900px){
+    #register-pet{
+       font-family: 'Chela One', cursive; font-size: 170%;
+   }
+   .card{
+       width: auto;
+       height: auto;
+       left: 10%;
+   }
+button{
+   margin-left: 50%;
+}
+
+#autocompletar {
+    background-color: yellow !important;
+}
+
+}
+@media screen and (max-width: 490px)
+{
+   .card{
+       left: 5%;
+       right: 5%;
+   }
+}

@@ -1,0 +1,18 @@
+#top{
+    margin-top: 5%;
+}
+
+.separacion {
+    /* margin: 15px; */
+    margin-top: 25px;
+}
+
+p {
+    color: black;
+    font-size: 35px;
+    font-weight: 350;
+}
+
+#colorIcono{
+    color:blue
+}

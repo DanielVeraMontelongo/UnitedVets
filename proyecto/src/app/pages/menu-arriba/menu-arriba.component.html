@@ -1,0 +1,61 @@
+<div class="bs-example">
+    
+    <mdb-navbar SideClass="navbar navbar-expand-md navbar-dark blue " [containerInside]="false">
+    
+      <!-- Navbar brand -->
+      <mdb-navbar-brand><a *ngIf="usuarioService.usuario.rol=='Admin' " routerLink="homeAdmin" class="navbar-brand" ><img src="../../../assets/imagenes/image.png "  width="77" height="48" class="d-inline-block align-top tamImg" alt=""></a></mdb-navbar-brand>
+      <mdb-navbar-brand><a *ngIf="usuarioService.usuario.rol=='Veterinario' "  routerLink="homeMedico" class="navbar-brand" ><img src="../../../assets/imagenes/image.png" width="77" height="48" class="d-inline-block align-top tamImg" alt=""></a></mdb-navbar-brand>
+      <mdb-navbar-brand><a *ngIf="usuarioService.usuario.rol=='Cliente' "  routerLink="homeCliente" class="navbar-brand" ><img src="../../../assets/imagenes/image.png" width="77" height="48" class="d-inline-block align-top tamImg" alt=""></a></mdb-navbar-brand>
+      <!-- Collapsible content -->
+      <links>
+      
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item alinear">
+              <a *ngIf="usuarioService.usuario.rol=='Admin' "   routerLink="resgistrarUser" class="nav-link waves-light" mdbWavesEffect>Registrar usuario</a>
+          </li>
+          <li class="nav-item alinear">
+              <a *ngIf="usuarioService.usuario.rol=='Admin' "   routerLink="registrarPet" class="nav-link waves-light" mdbWavesEffect>Registrar mascota</a>
+          </li>
+        
+          <li class="nav-item alinear">
+              <a *ngIf="usuarioService.usuario.rol=='Veterinario' "  routerLink="citas" class="nav-link waves-light" mdbWavesEffect>Citas</a>
+          </li>
+
+          <li class="nav-item alinear">
+            <a *ngIf="usuarioService.usuario.rol=='Veterinario' "  routerLink="pre-historial" class="nav-link waves-light" mdbWavesEffect>Historiales</a>
+        </li>
+
+          <li *ngIf="usuarioService.usuario.rol=='Cliente' " class="nav-item avatar dropdown alinear " dropdown>
+            <a mdbWavesEffect type="button" class="nav-link waves-light" mdbWavesEffect routerLink="historiales/buscar"> 
+              Historiales</a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a *ngIf=" usuarioService.usuario.rol=='Veterinario' " class="dropdown-item waves-light" mdbWavesEffect routerLink="historiales/anadir">Añadir</a>
+              <!-- <a   class="dropdown-item waves-light" mdbWavesEffect routerLink="historiales/buscar">Buscar</a> -->
+            </div>
+          </li>
+          <li class="nav-item alinear">
+              <a *ngIf="usuarioService.usuario.rol=='Veterinario' "  routerLink="listaCliente" class="nav-link waves-light" mdbWavesEffect>Clientes</a>
+          </li>
+        
+        </ul>
+      
+      
+        <ul  class="navbar-nav ml-auto nav-flex-icons" id="perfil">
+        
+          <li class="nav-item avatar dropdown " dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+              <img src={{usuarioService.usuario.foto}} alt="" class="img-fluid rounded-circle z-depth-0"></a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a *ngIf="usuarioService.usuario.rol=='Cliente' || usuarioService.usuario.rol=='Veterinario' || usuarioService.usuario.rol=='Admin' " class="dropdown-item waves-light" mdbWavesEffect  (click)="irPerfil()">Mi perfil</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Cerrar sesión</a>
+            </div>
+          </li>
+        </ul>
+      </links>
+      <!-- Collapsible content -->
+    
+    </mdb-navbar>
+    <!--/.Navbar-->
+</div>
+

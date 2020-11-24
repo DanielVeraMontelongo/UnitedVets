@@ -1,0 +1,57 @@
+.colorFooter {
+    background-image: radial-gradient(circle at 12.5% 12.5%, #EAFFFF 0, #94ADE1 50%, #414142 100%);
+}
+
+img {
+    height: 60px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+
+/* imagen */
+
+.pagin {
+    width: 100%;
+    height: 550px;
+    margin-left: 0px;
+    margin-right: 0px;
+    position: relative;
+}
+
+.titulo {
+    position: absolute;
+    top: 100px;
+    left: 5px;
+    font-size: 79px;
+    font-weight: 600;
+    color: orangered;
+    color: blue;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .titulo {
+        font-size: 20px;
+        font-weight: 10px;
+        top: 380px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .titulo {
+        font-size: 50px;
+        font-weight: 70px;
+        left: 90px;
+        top: 380px;
+    }
+}
+
+.titulo {
+    width: 100%;
+    height: 50px;
+}
+
+.margen {
+    margin-left: 50px;
+}

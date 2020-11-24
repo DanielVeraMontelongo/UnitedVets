@@ -1,0 +1,202 @@
+
+<form class="form-inline formA">
+    <div class="form-group alinear">
+        <div class="input-group">
+            <br>
+            <div class="espacio">
+                <input class="form-control" placeholder="Elegir fecha" name="dp" [(ngModel)]="fromDate" ngbDatepicker
+                    #d="ngbDatepicker">
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i
+                        class="material-icons" ngbTooltip="Calendario">
+                        calendar_today
+                    </i></button>
+            </div>
+            <button class="btn" (click)="buscar()" type="button">
+                <i class="material-icons" ngbTooltip="Buscar">
+                    search
+                </i></button>
+            <button class="btn" (click)="open(contentNuevaCita,'anadir',null)" type="button"><i class="material-icons"
+                    ngbTooltip="Añadir Citas">
+                    add_box
+                </i></button>
+        </div>
+    </div>
+</form>
+<br>
+<div class="row " id="titulo">
+
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 ">
+    </div>
+    <p> Citas</p>
+  </div>
+<div class="row">
+    <div class="card" style="width: 54rem;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre Cliente</th>
+                    <th scope="col">Nombre Mascota</th>
+                    <th scope="col">Codigo Cita</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Opciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cita of citas | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                    <td>{{cita.nombreP}}</td>
+                    <td>{{cita.nombre}}</td>
+                    <td>{{cita.cita_id}}</td>
+                    <td>{{cita.fecha}}</td>
+                    <td>{{cita.hora}}</td>
+                    <td class="botones">
+                        <button ngbTooltip="Modificar" type="button" (click)="open(content,'modificar',cita)"
+                            class="btnA btn btn-sm">
+                            <mdb-icon fas icon="edit fa-2x green-text " id="BotonModificar"></mdb-icon>
+                        </button>
+                        <button ngbTooltip="Eliminar" type="button" class="btnA btn btn-sm " (click)="confirmar(cita)">
+                            <mdb-icon fas icon="minus fa-2x red-text" id="btnDelete"></mdb-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class=" d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+        (pageChange)="refreshPaginas()">
+    </ngb-pagination>
+
+    <ng-template #content let-modal>
+        <div id="contenedorModal">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Modificar cita</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                         
+                            <div class="form-group alinearInput">
+                                <label>Nombre de Usuario</label>
+                                <input type="text" placeholder="Nombre" [(ngModel)]="nombreC" id="nombreC"
+                                    [ngModelOptions]="{standalone: true}" [disabled]=btnEdit>
+                            </div>
+                        
+                            <div class="form-group alinearInput">
+                                <label>Nombre Mascota</label>
+                                <input type="text" placeholder="Apellidos" [(ngModel)]="apellidosC" id="apellidosC"
+                                    [ngModelOptions]="{standalone: true}" [disabled]=btnEdit>
+                            </div>
+                        
+                            <div class="form-group alinearInput">
+                                <label for="fechaC">Fecha de Cita</label>
+                                <input type="date" id="fechaC" placeholder="Fecha" [(ngModel)]="fechaC" id="fechaC"
+                                    [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group alinearInputF selector">
+                                <label>Elige una hora de Cita</label>
+                                <select class="form-control" name="opcionS" [(ngModel)]="opcionS">
+                                    <option value="">Seleccionar opcion </option>
+                                    <option *ngFor="let opcion of opciones" [value]="opcion">
+                                        {{opcion}}
+                                    </option>
+                                </select>
+                      
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="alerta">
+                <ngb-alert class="col-md-5" *ngIf="successMessage" type="success" (close)="successMessage = ''">
+                    {{ successMessage }}</ngb-alert>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="editBoton; else esFalsoM" type="button" class="btn btn-outline-primary"
+                    (click)="editar()" (click)="modal.dismiss('Cross click')">Modificar</button>
+                <ng-template #esFalsoM>
+                </ng-template>
+                <button *ngIf="!editBoton; else esFalsoM1" type="button" class="btn btn-outline-primary"
+                    (click)="anadir()">Guardar</button>
+                <ng-template #esFalsoM1>
+                </ng-template>
+                <button type="button" class="btn btn-outline-primary"
+                    (click)="modal.close('Save click')">Cancelar</button>
+            </div>
+        </div>
+    </ng-template>
+
+    <!--Modal Añadir Cita-->
+
+  
+    <ng-template #contentNuevaCita let-modal>
+        <div id="contenedorModal">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Añadir cita</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="form-group alinearInput">
+                                <label>DNI Titular</label>
+                                <input type="text" placeholder="DNI" [(ngModel)]="dniCN" id="dniCN"
+                                    [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group alinearInput">
+                                <label>Nombre Mascota</label>
+                                <input type="text" placeholder="Nombre Mascota" [(ngModel)]="nombreMN" id="nombreMN"
+                                    [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group alinearInput">
+                                <label for="fechaC">Fecha de Cita</label>
+                                <input type="date" id="fechaC" placeholder="Fecha" [(ngModel)]="citaNueva.fecha"
+                                    id="fechaCN" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group alinearInputF selector">
+                                <label>Elige una hora de Cita</label>
+                                <select class="form-control" id="opcionSN" name="opcionS" [(ngModel)]="citaNueva.hora">
+                                    <option value="">Seleccionar opcion </option>
+                                    <option *ngFor="let opcion of opciones" [value]="opcion">
+                                        {{opcion}}
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="alerta">
+                <ngb-alert class="col-md-5" *ngIf="successMessage" type="success" (close)="successMessage = ''">
+                    {{ successMessage }}</ngb-alert>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="editBoton; else esFalsoM" type="button" class="btn btn-outline-primary"
+                    (click)="editar()">Modificar</button>
+                <ng-template #esFalsoM>
+                </ng-template>
+                <button *ngIf="!editBoton; else esFalsoM1" type="button" class="btn btn-outline-primary"
+                    (click)="anadir()" (click)="modal.dismiss('Cross click')">Guardar</button>
+                <ng-template #esFalsoM1>
+                </ng-template>
+                <button type="button" class="btn btn-outline-primary"
+                    (click)="modal.close('Save click')">Cancelar</button>
+            </div>
+        </div>
+    </ng-template>
+
+</div>

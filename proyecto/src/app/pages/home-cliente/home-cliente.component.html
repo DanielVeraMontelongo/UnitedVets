@@ -1,0 +1,94 @@
+<div class="row separacion">
+
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 ">
+    </div>
+    <p>Bienvenido {{usuarioService.usuario.nombre_usuario}} </p>
+</div>
+
+    <!-- chat -->
+    <a target="_blank"  href="https://api.whatsapp.com/send?phone=+34659654276&amp;text=Buenas, Necesito informacion" id="whatsapplink" class=" hidemobile box">
+        <mdb-icon fab icon="whatsapp fa-3x"  ngbTooltip="WhatsApp"  class="green-text pr-3 move-up"></mdb-icon>
+    </a>
+
+<div class="row">
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+    </div>
+    <div class="card" style="width: 58rem;">
+        <ngb-carousel *ngIf="images"  >
+            <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                    <img src="../../../assets/imagenes/fondoO3.jpg" alt="Random first slide" class="imgCarrusel">
+                </div>
+                <div class="carousel-caption">
+                    <h3 class="fuente"> Jornada de vacunas.</h3>
+                    <p class="fuente">De lunes a viernes 9am a 3pm.</p>
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                    <img src="../../../assets/imagenes/fondoO2.jpg" alt="Random second slide" class="imgCarrusel">
+                </div>
+                <div class="carousel-caption">
+                    <h3 class="fuente">Esterilizacion.</h3>
+                    <p class="fuente">20% de descuento en todo el mes de Noviembre.</p>
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                    <img src="../../../assets/imagenes/fondoO1.jpg" alt="Random third slide" class="imgCarrusel">
+                </div>
+                <div class="carousel-caption">
+                    <h3 class="fuente">Alimentación.</h3>
+                    <p class="fuente">15 euros la consulta de Dieta.</p>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+    </div>
+    
+</div>
+
+<div class="row separacion">
+
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 ">
+    </div>
+    <p> Citas de mascota</p>
+</div>
+
+<!-- tabla -->
+<div class="row">
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+    </div>
+
+    <div class="card" style="width: 58rem;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Fecha de Cita</th>
+                    <th scope="col">Hora de Cita</th>
+                    <th scope="col">Nombre de Mascota</th>
+                    <th scope="col">Especie</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let cita of citas | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                    <td>{{cita.fecha}}</td>
+                    <td>{{cita.hora}}</td>
+                    <td>{{cita.nombre}}</td>
+                    <td>{{cita.especie}}</td>
+                </tr>
+            
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class=" d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+        (pageChange)="refreshPaginas()">
+    </ngb-pagination>
+  </div>
+

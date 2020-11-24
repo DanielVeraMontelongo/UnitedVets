@@ -1,0 +1,96 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.formA{
+    padding-top: 10px;
+    background-image: linear-gradient(75deg, #b2e8ff 0, #5a7ec9 50%, #15223a 100%);
+    width: 95%;
+    
+  
+}
+
+#botonLupa
+{
+    margin-top: -5px;
+    margin-left: -2%;
+}
+input{
+    border: none;
+}
+.title{
+    color:white;
+
+}
+.espacio{
+    margin-top: 5px;
+}
+
+.alinear{
+    margin:0 auto;
+    
+
+}
+
+.btn{
+    padding: 5px;
+    border: none;
+}
+form{
+    margin:0 auto;
+    margin-left: 5%;
+    margin-right: 10%;
+    width: 70% !important;
+    /* border: none; */
+    
+}
+
+
+
+.contenido{
+    width: 95%;
+    margin:0 auto;
+  
+}
+.datos{
+    display: flex;
+}
+
+.row{
+    margin:0 auto;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+textarea{
+    width: 80%;
+    margin:0 auto;
+ 
+    height: 50%;
+    padding: 1%; 
+}
+
+.botones{
+  width: 12%;
+margin-top: 5%;
+margin-bottom: 5%;
+
+}
+
+  ngb-alert{
+    width: 100%;
+}
+
+.alerta{
+  width: 70%;
+  margin:0 auto;
+}
+
+#nombreP{
+    width: 40%;
+}
+
+#nMascota{
+    margin-left: -15%;
+}
+#fElaboracion{
+    margin-left: -13%;
+}

@@ -1,0 +1,65 @@
+
+
+<div class="row " id="top">
+    <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 "></div>
+    <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7 ">
+      
+      <form class="form-inline ">
+        <input class="form-control mr-sm-2 " type="search" placeholder="Buscar cliente" [(ngModel)]="nombre" aria-label="Buscar"  [ngModelOptions]="{standalone: true}">
+        <button  class="btn  btn-outline-primary my-2 my-sm-0" (click)="buscarCliente()" type="submit">Buscar</button>
+        
+        <form *ngIf="clienteBuscado == true && nombre" class="form-inline " id="filtrarCLiente" >
+          <select class="form-control"  name="miselect" [(ngModel)]="seleccionado">
+            <option [value]="historial.fecha" *ngFor="let historial of historiales">{{historial.fecha}} </option>
+          </select>
+          <button id="margenBoton" class="btn  btn-outline-primary my-2 my-sm-0" (click)="filtrarFecha()" type="submit">Filtrar fecha</button>
+        </form>
+        <button  (click)="crearHistorial(nuevoHistorial)" ngbTooltip="Crear nueva historia" class="btn btn-primary" id="nuevaHistoria"><i class="fas fa-plus-square "></i></button>
+      </form>
+      
+    </div>
+    <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 "> </div>
+  </div>
+
+  <div class="row " id="titulo">
+
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 ">
+    </div>
+    <p> Historiales</p>
+  </div>
+
+  <div class="row" >
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+    </div>
+  
+    <div class="card" style="width: 58rem;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nombre del cliente</th>
+                    <th scope="col">Mascota</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Historiales</th>
+  
+  
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let historial of historiales | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ">
+                    <td>{{historial.hist_id}}</td>
+                    <td>{{historial.nombreP}}</td>
+                    <td>{{historial.nombre}}</td>
+                    <td>{{historial.fecha}}</td>
+                    <td><button ngbTooltip="Ver historial" class="btn" (click)="verHistorial(historial)" type="button"><mdb-icon fas icon="id-card fa-3x indigo-text"  ></mdb-icon></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+      (pageChange)="refreshPaginas()">
+    </ngb-pagination>
+  </div>
